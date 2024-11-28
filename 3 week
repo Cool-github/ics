@@ -1,0 +1,31 @@
+sudo clone github 
+sudo mv DVWA dvwa
+sudo chmod -R 777 dvwa 
+cd dvwa cd config 
+sudo cp config.inc.php.dist config.incphp
+sudo nano config.inc.php
+ change adim , pass 
+cat config.inc.php
+
+sudo service mysql start 
+sudo mysql -u root -p
+
+enter maria db
+
+create database csd;
+create user csd@127.0.0.1 1
+identified by  'password';
+exit;
+
+cd /etc 
+cd php 
+cd apache2
+sudo nano php.ini 
+
+sudo service apache2 start
+login https://127.0.0.1/dvwa/login.php
+
+set dvwa secuity as low 
+goto sql injections enter any name 
+enter %
+enter &usernet
