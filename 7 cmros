@@ -1,0 +1,16 @@
+download cmros and extract
+open from vmware
+open .ovf file
+if config 
+goto zenmap and enter  address
+
+nmap -p -655535 -T4 -A -V 192.168232.128
+
+again go to zenmap and enter ip address now u get ssh and http
+
+enter ip addess
+
+ssh test@ip address -13652
+
+
+open wireshark , open cap.pcapng ull get the us name pass
