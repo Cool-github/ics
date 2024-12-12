@@ -1,9 +1,11 @@
 cd /var/www/html
-sudo clone github 
+sudo git clone github  [ https://github.com/digininja/DVWA.git
+ls 
 sudo mv DVWA dvwa
 sudo chmod -R 777 dvwa 
-cd dvwa cd config 
-sudo cp config.inc.php.dist config.incphp
+cd dvwa 
+cd config 
+sudo cp config.inc.php.dist config.inc.php
 sudo nano config.inc.php
  change adim , pass 
 cat config.inc.php
@@ -14,17 +16,22 @@ sudo mysql -u root -p
 enter maria db
 
 create database csd;
-create user csd@127.0.0.1 1
-identified by  'password';
+create user csd@127.0.0.1 1 identified by  'password';
 exit;
 
 cd /etc 
 cd php 
+ls
+cd 8.2
+ls
 cd apache2
+ls
 sudo nano php.ini 
 
 sudo service apache2 start
-login https://127.0.0.1/dvwa/login.php
+goto browser and give http://localhost/DVWA or http://127.0.0.1/DVWA/login.php 
+
+login http://127.0.0.1/DVWA/login.php
 
 set dvwa secuity as low 
 goto sql injections enter any name 
