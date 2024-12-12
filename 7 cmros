@@ -4,7 +4,7 @@ open .ovf file
 if config 
 goto zenmap and enter  address
 
-nmap -p -655535 -T4 -A -V 192.168232.128
+nmap -p -65535 -T4 -A -V 192.168232.128
 
 again go to zenmap and enter ip address now u get ssh and http
 
