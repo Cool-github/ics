@@ -1,3 +1,4 @@
+cd /var/www/html
 sudo clone github 
 sudo mv DVWA dvwa
 sudo chmod -R 777 dvwa 
