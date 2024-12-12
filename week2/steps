@@ -1,0 +1,25 @@
+mkdir rsa 
+(copy paste all files into this folder)
+cd rsa
+cat enc.txt
+cat pubkey.pem
+now copy hexa deci code 
+goto hexa to deci coverter 
+paste and get number 
+
+go to note pad paste this as n
+now open factordb.com
+enter n
+u get 2 values  copy them as p and q
+
+cat exploit.py
+
+openssl rsa -pubin -inform PEM -text - noout < pubkey.pem
+
+pip install pycryptodome
+
+ls 
+
+python exploit.py
+
+openssl pkeyutl -decrypt -in enc.txt -out dec.txt -inkey private.pem
